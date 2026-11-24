@@ -66,5 +66,34 @@ namespace AuthApi.Controllers
                 return Ok(new { message = e.Message });
             }
         }
+
+        [HttpGet("userAllroles")]
+        public async Task<IActionResult> UserAllroles([FromQuery] Guid id)
+        {
+            try
+            {
+                var user = await _context.Users
+                    .Include(u => u.Roles)
+                    .Select(u => new
+                    {
+                        Identity = u.Id,
+                        UserName = u.Name,
+                        Roles = u.Roles.Select(r => new { r.Name })
+                    })
+                    .FirstOrDefaultAsync(u => u.Identity == id);
+
+                if (user is null)
+                {
+                    return NotFound(new { message = "Nincs user vagy role" });
+                }
+
+                return Ok(new { message = "Sikeres lekérdezés", result = user });
+            }
+            catch (Exception e)
+            {
+                return Ok(new { message = e.Message });
+            }
+
+        }
     }
 }
