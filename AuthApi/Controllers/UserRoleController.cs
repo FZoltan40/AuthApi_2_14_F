@@ -40,5 +40,31 @@ namespace AuthApi.Controllers
                 return Ok(new { message = e.Message });
             }
         }
+
+        [HttpDelete("deleteRole")]
+        public async Task<IActionResult> DeleteRole([FromBody] DeleteUserRoleDto deleteUserRoleDto)
+        {
+            try
+            {
+                var user = await _context.Users.Include(u => u.Roles)
+                    .FirstOrDefaultAsync(u => u.Id == deleteUserRoleDto.UserId);
+
+                var role = await _context.Roles.FindAsync(deleteUserRoleDto.RoleId);
+
+                if (user is null || role is null)
+                {
+                    return NotFound(new { message = "Nincs user vagy role" });
+                }
+
+                user.Roles.Remove(role);
+                await _context.SaveChangesAsync();
+
+                return Ok(new { message = "Sikeres trölés" });
+            }
+            catch (Exception e)
+            {
+                return Ok(new { message = e.Message });
+            }
+        }
     }
 }
