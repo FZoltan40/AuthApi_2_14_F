@@ -16,7 +16,7 @@ namespace AuthApi.Controllers
             _context = context;
         }
 
-        [HttpPost("newUser")]
+        [HttpPost("new")]
         public async Task<IActionResult> NewUser([FromBody] NewUserDto newUserDto)
         {
             var user = new User
@@ -39,7 +39,7 @@ namespace AuthApi.Controllers
             return Ok(new { message = "Felvéve" });
         }
 
-        [HttpGet("allUser")]
+        [HttpGet("all")]
         public async Task<IActionResult> AllUser()
         {
             var users = await _context.Users.ToListAsync();

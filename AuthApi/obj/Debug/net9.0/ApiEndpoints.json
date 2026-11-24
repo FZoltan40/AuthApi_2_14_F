@@ -1,8 +1,40 @@
 [
   {
+    "ContainingType": "AuthApi.Controllers.RolesController",
+    "Method": "NewRole",
+    "RelativePath": "roles/new",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "newRoleDto",
+        "Type": "AuthApi.Models.DTOs.NewRoleDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthApi.Controllers.UserRoleController",
+    "Method": "AssignRole",
+    "RelativePath": "userrole/assignRole",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "newUserRoleDto",
+        "Type": "AuthApi.Models.DTOs.NewUserRoleDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "AuthApi.Controllers.UsersController",
     "Method": "AllUser",
-    "RelativePath": "users/allUser",
+    "RelativePath": "users/all",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -27,8 +59,24 @@
   },
   {
     "ContainingType": "AuthApi.Controllers.UsersController",
+    "Method": "Delete",
+    "RelativePath": "users/delete",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthApi.Controllers.UsersController",
     "Method": "NewUser",
-    "RelativePath": "users/newUser",
+    "RelativePath": "users/new",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
